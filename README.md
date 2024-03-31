@@ -1,7 +1,5 @@
 # belly-button-challenge
 
-This README provides an overview of the interactive dashboard implemented using D3.js and Plotly. The dashboard reads data from a JSON file and dynamically populates a dropdown menu to select samples. It then displays corresponding charts and metadata based on the selected sample.
-
 ## Description
 
 The dashboard consists of the following key components:
@@ -28,7 +26,7 @@ The code reads data from the `samples.json` file using D3.js. It dynamically pop
 
 To use the dashboard:
 1. Ensure the `samples.json` file is accessible.
-2. Open the HTML file containing the dashboard in a web browser.
+2. Open `index.html` containing the dashboard in a web browser.
 3. Select a sample from the dropdown menu to view corresponding charts and metadata.
 
 ## Dependencies
