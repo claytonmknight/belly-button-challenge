@@ -1,7 +1,7 @@
 // Read data from samples.json
 d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then(function(data) {
    
-    // Populate the dropdown menu
+    // Building the dropdown menu
     var select = d3.select("#selDataset");
     data.names.forEach((name) => {
         select.append("option")
@@ -9,21 +9,21 @@ d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").th
             .property("value", name);
     });
 
-    // Add event listener for the dropdown menu change
+    // Responding to changes in the dropdown menu
     select.on("change", function () {
         var newSample = d3.select(this).property("value");
         optionChanged(newSample);
     });
 
-    // Initialize the page with the first sample
+    // Use the first sample
     var firstSample = data.names[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
-    // Initialize the page with the first sample for gauge chart
+    // Setting up the initial sample for the gauge chart
     buildGaugeChart(firstSample); 
 });
 
-// Function to build the metadata panel
+// Create the metadata panel
 function buildMetadata(sample) {
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
         var metadata = data.metadata;
@@ -31,7 +31,7 @@ function buildMetadata(sample) {
         var result = resultArray[0];
         var PANEL = d3.select("#sample-metadata");
 
-        // Clear any existing metadata
+        // Remove all previous data
         PANEL.html("");
 
         // Add each key-value pair to the panel
@@ -41,7 +41,7 @@ function buildMetadata(sample) {
     });
 }
 
-// Function to build the charts
+// Create the charts
 function buildCharts(sample) {
     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
         var samples = data.samples;
@@ -52,7 +52,7 @@ function buildCharts(sample) {
         var otu_labels = result.otu_labels;
         var sample_values = result.sample_values;
 
-        // Build a Bar Chart
+        // Bar Chart Maker
         var yticks = otu_ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse();
         var barData = [{
             y: yticks,
@@ -69,7 +69,7 @@ function buildCharts(sample) {
 
         Plotly.newPlot("bar", barData, barLayout);
 
-        // Build a Bubble Chart
+        // Bubble Chart Maker
         var bubbleData = [{
             x: otu_ids,
             y: sample_values,
@@ -95,7 +95,7 @@ function buildCharts(sample) {
     });
 }
 
-// Function to handle changes in the dropdown selection
+// New sample
 function optionChanged(newSample) {
     console.log("New sample selected:", newSample);
     buildCharts(newSample);
