@@ -17,6 +17,8 @@ The dashboard consists of the following key components:
     - **Bubble Chart**: Shows the distribution of bacteria cultures per sample.
 
 6. **Option Changed Function**: The `optionChanged` function is called whenever a new sample is selected. It updates the charts and metadata panel based on the selected sample.
+   
+7. **Github Pages**: `https://claytonmknight.github.io/belly-button-challenge/` 
 
 ## Implementation
 
